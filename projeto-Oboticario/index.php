@@ -1,7 +1,55 @@
-<?php include 'head.php' ?>
+<?php
+include('conexao.php');
+
+if(isset($_POST['user']) || isset($_POST['senha'])) {
+
+    if(strlen($_POST['user']) == 0) {
+        echo "Preencha seu e-mail";
+    } else if(strlen($_POST['senha']) == 0) {
+        echo "Preencha sua senha";
+    } else {
+
+        $email = $mysqli->real_escape_string($_POST['user']);
+        $senha = $mysqli->real_escape_string($_POST['senha']);
+
+        $sql_code = "SELECT * FROM dados_user WHERE nome = '$email' AND senha = '$senha'";
+        $sql_query = $mysqli->query($sql_code) or die("Falha na execução do código SQL: " . $mysqli->error);
+
+        $quantidade = $sql_query->num_rows;
+
+        if($quantidade == 1) {
+            
+            $usuario = $sql_query->fetch_assoc();
+
+            if(!isset($_SESSION)) {
+                session_start();
+            }
+
+            $_SESSION['id'] = $usuario['id'];
+            $_SESSION['nome'] = $usuario['nome'];
+
+            header("Location: painel.php?r=home");
+
+        } else {
+            echo "Falha ao logar! E-mail ou senha incorretos";
+        }
+
+    }
+
+}
+?>
+
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<title> Login </title>
+	<link rel="stylesheet" href="_CSS/form.css" type="text/css">
+    <link rel="stylesheet" href="_CSS/style.css" type="text/css">
+
+</head>
+<body>
 <div class="circle"></div>
-<div class="cube"></div>
-  <form class="form left_hover" id="login1" action="">
+  <form class="form left_hover" method="POST" id="login1">
       <h2 class="form__title">Login</h2>
       <div class="form__container">
           <div class="form__group">
@@ -20,23 +68,10 @@
               <label for="senha" class="form__label">Senha:</label>
               <span class="form__line"></span>
           </div>
-          <button type="submit" class="form__submit" >Enviar</button>
+          <button type="submit" class="form__submit" >Logar</button>
       </div>
       
   </form>
-  <?php
-  include "_scripts/functions.php";
 
-  if(!empty($_POST['user'])){
-
-if(user($_POST)){
-    echo'deu bom';
-}else{
-    echo 'deu ruim';
-}}
-  ?>
-
-
-
-
-<?php include 'js.php' ?>
+</body>
+</html>

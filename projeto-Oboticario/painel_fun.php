@@ -8,28 +8,28 @@ include "protect.php";
 <body>
     <?php
     
-    include "menu.php";
+    include "menu_fun.php";
     
     switch($_GET['r']){
 
         case 'cadProduto':
-            include "views/cadProduto.php";
+            include "views_fun/cadProduto.php";
             break;
 
         case 'cadFuncionario':
-            include "views/cadFuncionario.php";
+            include "views_fun/cadFuncionario.php";
             break;
 
         case 'ConsultarE':
-            include "views/ConsultarE.php";
+            include "views_fun/ConsultarE.php";
             break;
 
         case 'ControleV':
-            include "views/ControleV.php";
+            include "views_fun/ControleV.php";
             break;
             
         default:
-            include "views/home.php";
+            include "views_fun/home.php";
         break;
         
         

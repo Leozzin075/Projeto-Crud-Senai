@@ -46,8 +46,7 @@ include "protect.php";
 </div>
 
 <?php include "_scripts/functions.php"; 
-
-if(!empty($_POST['qntdP'])){
+if(!empty($_POST['user'])){
 
 if(cadastrar_venda($_POST)){
   ?>
@@ -102,6 +101,7 @@ if(cadastrar_venda($_POST)){
             <th style="text-align:center">Quantade</th>
             <th style="text-align:center">Codigo</th>
             <th style="text-align:center">Valor Produto</th>
+            <th style="text-align:center">Valor venda</th>
           </tr>
         </thead>
         <tbory  id="caixa">
@@ -118,6 +118,7 @@ if(cadastrar_venda($_POST)){
             <td style="text-align:center"><?php echo $dados ['qtde_comprada']; ?></td>
             <td style="text-align:center"><?php echo $dados ['cod_produto']; ?></td>
             <td style="text-align:center"><?php echo $dados ['valor_produto']; ?></td>
+            <td style="text-align:center"><?php echo $dados ['valor_venda']; ?></td>
           </tr>
           <?php } ?>
         </tbory>

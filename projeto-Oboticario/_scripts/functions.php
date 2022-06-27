@@ -30,7 +30,7 @@
                 $venda = $dados['Valor_venda'];
                 
 
-                $sql = "INSERT INTO consulta_venda (data_venda,cod_produto,valor_venda,valor_produto,qtde_comprada)VALUES ('$dt_venda','$codigoBarraP','$qntdP','$Produto','$venda')";
+                $sql = "INSERT INTO consulta_venda (data_venda,cod_produto,valor_venda,valor_produto,qtde_comprada) VALUES ('$dt_venda','$codigoBarraP','$venda','$Produto','$qntdP')";
                 $query = $mysqli->query($sql);
 
                 return $query;
@@ -95,21 +95,8 @@
             }
 
             //verificar se funciona
-            function editar($dados){
-
-                include "_scripts/config.php";
-                $edit_cad = "UPDATE cad_produto SET nome_produto = '$nome' WHERE id= 19";
-                $resultado = mysqli_query($mysqli, $edit_cad);
-                
-            }
-            function delete($id) {
-                include '_scripts/config.php';
-                $id = $id['id'];
-                $sql = "DELETE FROM cad_Produto WHERE id = $id";
-                mysqli_query($mysqli,$sql);
-                return $id;
-            
-            }   
+   
+               
 
             // function cadastro_produto($codigoBarra){
             //     include "config.php";
@@ -120,7 +107,14 @@
             // }  
 
         
- ?>
+             function delete($id) {
+                include '_scripts/config.php';
+                 $id = $id['id'];
+                 $sql = "DELETE FROM cad_Produto WHERE id = $id";
+                 mysqli_query($mysqli,$sql);
+                 return $id;
+            
+            } ?>
 
            
 
